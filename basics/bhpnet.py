@@ -44,14 +44,14 @@ def client_sender(buffer):
 
             # now wait for data back
             recv_len=1
-            reponse = ""
+            response = ""
 
             while recv_len:
                 data = client.recv(4096)
                 recv_len = len(data)
-                response+= data
+                response += data
 
-                if rev_len < 4096 :
+                if recv_len < 4096 :
                     break
 
                 print response,
@@ -62,10 +62,11 @@ def client_sender(buffer):
 
                 # send it off
                 client.send(buffer)
-    except:
+    except Exception as err:
 
         print "[*] Exception! Exiting."
-
+        print "The exception was: "
+        print err
         # tear down the connection
         client.close()
 
