@@ -1,3 +1,5 @@
+# this is a simple program that creates a reverse shell in python 
+
 import socket 
 import subprocess
 import os 
