@@ -5,6 +5,7 @@
 #
 # usage: python massParser.py <masscan output list>
 import sys
+import os
 # import argparse # future proofing my code
 
 def create_lists(l):
@@ -91,8 +92,12 @@ def parse_masscan(file) : # function to print out the nmap commands for each tar
                 ports += str(x) + ","
             script.append("nmap -sV -sS -Pn -O -vv -oA NMAP-TCP-" + str(i) + " -p " + ports[:-1] + " " + i)
         print "#"+ "<"*10 + "--- TCP Targets ---" + ">"*10
+        outFile = open('nmap-' + str(sys.argv[1])[:2] +".sh", 'w' )
         for string in sorted(script, key = len): # print out the nmap commands for each target
             print string
+            outFile.write(string)
+        os.system('chmod +x ' + 'nmap-' + str(sys.argv[1])[:2] +".sh")
+
     else : # if there are no targets
         print "# No targets for TCP "
 
