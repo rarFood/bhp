@@ -92,11 +92,11 @@ def parse_masscan(file) : # function to print out the nmap commands for each tar
                 ports += str(x) + ","
             script.append("nmap -sV -sS -Pn -O -vv -oA NMAP-TCP-" + str(i) + " -p " + ports[:-1] + " " + i)
         print "#"+ "<"*10 + "--- TCP Targets ---" + ">"*10
-        outFile = open('nmap-TCP-' + str(sys.argv[1])[:2] +".sh", 'w' )
+        outFile = open('nmap-TCP-' + str(sys.argv[1])[-6][:2] +".sh", 'w' )
         for string in sorted(script, key = len): # print out the nmap commands for each target
             print string
             outFile.write(string)
-        os.system('chmod +x ' + 'nmap-TCP-' + str(sys.argv[1])[:2] +".sh")
+        os.system('chmod +x ' + 'nmap-TCP-' + str(sys.argv[1])[-6:][:2] +".sh")
         outFile.close()
     else : # if there are no targets
         print "# No targets for TCP "
@@ -109,11 +109,11 @@ def parse_masscan(file) : # function to print out the nmap commands for each tar
                 ports += str(x) + ","
             script.append("nmap -sV -sU -Pn -vv -oA NMAP-UDP-"+ str(i) + " -p " + ports[:-1] + " " + i)
         print "#"+ "<"*10 + "--- UDP Targets ---" + ">"*10
-        outFile = open('nmap-UDP-' + str(sys.argv[1])[:2] +".sh", 'w' )
+        outFile = open('nmap-UDP-' + str(sys.argv[1])[-6:][:2] +".sh", 'w' )
         for string in sorted(script, key= len):
             print string
             outFile.write(string)
-        os.system('chmod +x ' + 'nmap-UDP-' + str(sys.argv[1])[:2] +".sh")
+        os.system('chmod +x ' + 'nmap-UDP-' + str(sys.argv[1])[-6:][:2] +".sh")
         outFile.close()
     else:
         print "# No targets for UDP"
