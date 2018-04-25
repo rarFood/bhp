@@ -92,7 +92,7 @@ def parse_masscan(file) : # function to print out the nmap commands for each tar
                 ports += str(x) + ","
             script.append("nmap -sV -sS -Pn -O -vv -oA NMAP-TCP-" + str(i) + " -p " + ports[:-1] + " " + i)
         print "#"+ "<"*10 + "--- TCP Targets ---" + ">"*10
-        outFile = open('nmap-TCP-' + str(sys.argv[1])[-6][:2] +".sh", 'w' )
+        outFile = open('nmap-TCP-' + str(sys.argv[1])[-6:][:2] +".sh", 'w' )
         for string in sorted(script, key = len): # print out the nmap commands for each target
             print string
             outFile.write(string)
