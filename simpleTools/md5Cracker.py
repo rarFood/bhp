@@ -1,3 +1,6 @@
+# Programmer: rarFood
+#
+# Simple md5 hash cracker for demos
 import md5
 import sys
 characters = range(97,122)
