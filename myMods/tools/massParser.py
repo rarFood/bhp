@@ -9,9 +9,13 @@ import os
 # import argparse # future proofing my code
 
 def create_lists(l):
-    l.sort() # sort
-    l.pop(0) # remove '#end'
-    l.pop(0) # remove '#masscan'
+    l.sort() # sort so al the '# end' and '#masscan' strings are stripped in the next loop
+
+    # i wrote this loop so you can append multiple masscan output files together
+    # and it would still work
+    while (l[0].strip('\n')=='# end' or l[0].strip('\n')=='#masscan'): # strip every '# end' and '#masscan' from the input file
+        # print l[0].strip('\n')  # for debugging
+        l.pop(0)
 
     n = [] # empty list to fill it with splited version
     tcp = [] # empty list for tcp entries
